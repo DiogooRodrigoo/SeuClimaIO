@@ -5,12 +5,16 @@ import {
   TouchableOpacity,
   View,
   Text,
+  ScrollView,
 } from "react-native";
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { theme } from "@/data/constants";
 
-import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
+import {
+  CalendarDaysIcon,
+  MagnifyingGlassIcon,
+} from "react-native-heroicons/outline";
 import { MapPinIcon } from "react-native-heroicons/solid";
 
 export default function Index() {
@@ -141,6 +145,125 @@ export default function Index() {
               </Text>
             </View>
           </View>
+        </View>
+
+        {/* Previsão Próximos Dias */}
+        <View className="mb-2 space-y-3">
+          <View className="flex-row items-center mx-5 space-x-2">
+            <CalendarDaysIcon size="32" color="white" />
+            <Text className="text-white text-base">Previsão Diária</Text>
+          </View>
+
+          <ScrollView
+            horizontal
+            contentContainerStyle={{ paddingHorizontal: 15 }}
+            showsVerticalScrollIndicator={false}
+          >
+            <View
+              style={{ backgroundColor: theme.bgBranco(0.15) }}
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+            >
+              <Image
+                className="h-11 w-11"
+                source={require("@/assets/images/tempestade.png")}
+              />
+              <Text className="text-white">Segunda-feira</Text>
+              <Text className="text-white text-xl font-semibold">
+                {" "}
+                23&#176;
+              </Text>
+            </View>
+
+            <View
+              style={{ backgroundColor: theme.bgBranco(0.15) }}
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+            >
+              <Image
+                className="h-11 w-11"
+                source={require("@/assets/images/tempestade.png")}
+              />
+              <Text className="text-white">Terça-feira</Text>
+              <Text className="text-white text-xl font-semibold">
+                {" "}
+                23&#176;
+              </Text>
+            </View>
+
+            <View
+              style={{ backgroundColor: theme.bgBranco(0.15) }}
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+            >
+              <Image
+                className="h-11 w-11"
+                source={require("@/assets/images/tempestade.png")}
+              />
+              <Text className="text-white">Quarta-feira</Text>
+              <Text className="text-white text-xl font-semibold">
+                {" "}
+                23&#176;
+              </Text>
+            </View>
+
+            <View
+              style={{ backgroundColor: theme.bgBranco(0.15) }}
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+            >
+              <Image
+                className="h-11 w-11"
+                source={require("@/assets/images/tempestade.png")}
+              />
+              <Text className="text-white">Quinta-feira</Text>
+              <Text className="text-white text-xl font-semibold">
+                {" "}
+                23&#176;
+              </Text>
+            </View>
+
+            <View
+              style={{ backgroundColor: theme.bgBranco(0.15) }}
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+            >
+              <Image
+                className="h-11 w-11"
+                source={require("@/assets/images/tempestade.png")}
+              />
+              <Text className="text-white">Sexta-feira</Text>
+              <Text className="text-white text-xl font-semibold">
+                {" "}
+                23&#176;
+              </Text>
+            </View>
+
+            <View
+              style={{ backgroundColor: theme.bgBranco(0.15) }}
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+            >
+              <Image
+                className="h-11 w-11"
+                source={require("@/assets/images/tempestade.png")}
+              />
+              <Text className="text-white">Sabado</Text>
+              <Text className="text-white text-xl font-semibold">
+                {" "}
+                23&#176;
+              </Text>
+            </View>
+
+            <View
+              style={{ backgroundColor: theme.bgBranco(0.15) }}
+              className="flex justify-center items-center w-24 rounded-3xl py-3 space-y-1 mr-4"
+            >
+              <Image
+                className="h-11 w-11"
+                source={require("@/assets/images/tempestade.png")}
+              />
+              <Text className="text-white">Domingo</Text>
+              <Text className="text-white text-xl font-semibold">
+                {" "}
+                23&#176;
+              </Text>
+            </View>
+          </ScrollView>
         </View>
       </SafeAreaView>
     </View>
