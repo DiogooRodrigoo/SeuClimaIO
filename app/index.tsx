@@ -17,7 +17,7 @@ export default function Index() {
   const [mostrarPesquisa, alternarPesquisa] = useState(false);
   const [localizacoes, setLocalizacoes] = useState([1, 2, 3]);
 
-  const identificadorLocation = (loc) => {
+  const identificadorLocation = (loc: number) => {
     console.log("Localização: ", loc);
   };
 
@@ -76,7 +76,7 @@ export default function Index() {
                   >
                     <MapPinIcon size={20} color={"gray"} />
                     <Text className="text-black text-lg ml-2">
-                      Londres, Inglaterra
+                      Cidade Tiradentes, São Paulo
                     </Text>
                   </TouchableOpacity>
                 );
@@ -86,7 +86,62 @@ export default function Index() {
         </View>
 
         {/* Seção de previsão */}
-        <View></View>
+        <View className="mx-4 flex justify-around flex-1 mb-2">
+          {/* Localização */}
+          <Text className="text-white text-center text-2xl font-bold">
+            Cidade Tiradentes,
+            <Text className="text-lg font-semibold text-gray-300">
+              São Paulo
+            </Text>
+          </Text>
+
+          {/* Imagem do Tempo */}
+          <View className="flex-row justify-center">
+            <Image
+              className="w-52 h-52"
+              source={require("@/assets/images/ensolarado.png")}
+            />
+          </View>
+
+          {/* Graus Celsius */}
+          <View className="space-y-2">
+            <Text className="text-center font-bold text-white text-6xl ml-5">
+              23&#176;
+            </Text>
+            <Text className="text-center  text-white text-xl tracking-widest">
+              Parcialmente nublado
+            </Text>
+          </View>
+
+          {/* Outras estatísticas */}
+          <View className="flex-row justify-between mx-4">
+            <View className="flex-row space-x-2 items-center">
+              <Image
+                className="h-6 w-6 ilter grayscale"
+                source={require("@/assets/images/vento.png")}
+              />
+              <Text className="text-white font-semibold text-base">22KM</Text>
+            </View>
+
+            <View className="flex-row space-x-2 items-center">
+              <Image
+                className="h-6 w-6 ilter grayscale"
+                source={require("@/assets/images/gota.png")}
+              />
+              <Text className="text-white font-semibold text-base">40%</Text>
+            </View>
+
+            <View className="flex-row space-x-2 items-center">
+              <Image
+                className="h-6 w-6 ilter grayscale"
+                source={require("@/assets/images/sol.png")}
+              />
+              <Text className="text-white font-semibold text-base">
+                6:05 AM
+              </Text>
+            </View>
+          </View>
+        </View>
       </SafeAreaView>
     </View>
   );
