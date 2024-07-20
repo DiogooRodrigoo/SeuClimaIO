@@ -4,15 +4,23 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Text,
 } from "react-native";
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { theme } from "@/data/constants";
 
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
-import { useState } from "react";
+import { MapPinIcon } from "react-native-heroicons/solid";
 
 export default function Index() {
   const [mostrarPesquisa, alternarPesquisa] = useState(false);
+  const [localizacoes, setLocalizacoes] = useState([1, 2, 3]);
+
+  const identificadorLocation = (loc) => {
+    console.log("Localização: ", loc);
+  };
+
   return (
     <View className="flex-1 relative">
       <StatusBar style={"light"} />
@@ -49,7 +57,35 @@ export default function Index() {
               <MagnifyingGlassIcon size="25" color="white" />
             </TouchableOpacity>
           </View>
+
+          {localizacoes.length > 0 && mostrarPesquisa ? (
+            <View className="absolute w-full bg-gray-300 top-16 rounded-3xl">
+              {localizacoes.map((loc, index) => {
+                let mostrarBorda = index + 1 != localizacoes.length;
+                let classeBorda = mostrarBorda
+                  ? "border-b-2 border-b-gray-400"
+                  : "";
+                return (
+                  <TouchableOpacity
+                    onPress={() => identificadorLocation(loc)}
+                    key={index}
+                    className={
+                      "flex-row items-center border-0 p-3 px-4 mb-1 " +
+                      classeBorda
+                    }
+                  >
+                    <MapPinIcon size={20} color={"gray"} />
+                    <Text className="text-black text-lg ml-2">
+                      Londres, Inglaterra
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          ) : null}
         </View>
+
+        {/* Seção de previsão */}
         <View></View>
       </SafeAreaView>
     </View>
