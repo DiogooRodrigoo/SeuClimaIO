@@ -7,9 +7,11 @@ import {
   Text,
   ScrollView,
 } from "react-native";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { theme } from "@/data/constants";
+import { theme } from "@/src/data/constants";
+import { debounce, values } from "lodash";
+import { buscarLocalizacao } from "../src/data/api/clima";
 
 import {
   CalendarDaysIcon,
@@ -21,9 +23,24 @@ export default function Index() {
   const [mostrarPesquisa, alternarPesquisa] = useState(false);
   const [localizacoes, setLocalizacoes] = useState([1, 2, 3]);
 
-  const identificadorLocation = (loc: number) => {
+  const identificadorLocation = (loc: any) => {
     console.log("Localização: ", loc);
   };
+
+  const identificadorPesquisa = (value: any) => {
+    console.log(JSON.stringify({ value }));
+
+    if (value.length > 2) {
+      buscarLocalizacao({ cityName: value }).then((data) => {
+        console.log("Localização", data);
+      });
+    }
+  };
+
+  const identificarTextoDebounce = useCallback(
+    debounce(identificadorPesquisa, 1200),
+    []
+  );
 
   return (
     <View className="flex-1 relative">
@@ -47,6 +64,7 @@ export default function Index() {
           >
             {mostrarPesquisa ? (
               <TextInput
+                onChange={identificadorPesquisa}
                 placeholder="Pesquisar Cidade"
                 placeholderTextColor={"lightgray"}
                 className="pl-6 h-10 text-white text-lg flex-1 pb-1"
@@ -168,10 +186,7 @@ export default function Index() {
                 source={require("@/assets/images/tempestade.png")}
               />
               <Text className="text-white">Segunda-feira</Text>
-              <Text className="text-white text-xl font-semibold">
-                {" "}
-                23&#176;
-              </Text>
+              <Text className="text-white text-xl font-semibold">23&#176;</Text>
             </View>
 
             <View
@@ -183,10 +198,7 @@ export default function Index() {
                 source={require("@/assets/images/tempestade.png")}
               />
               <Text className="text-white">Terça-feira</Text>
-              <Text className="text-white text-xl font-semibold">
-                {" "}
-                23&#176;
-              </Text>
+              <Text className="text-white text-xl font-semibold">23&#176;</Text>
             </View>
 
             <View
@@ -198,10 +210,7 @@ export default function Index() {
                 source={require("@/assets/images/tempestade.png")}
               />
               <Text className="text-white">Quarta-feira</Text>
-              <Text className="text-white text-xl font-semibold">
-                {" "}
-                23&#176;
-              </Text>
+              <Text className="text-white text-xl font-semibold">23&#176;</Text>
             </View>
 
             <View
@@ -213,10 +222,7 @@ export default function Index() {
                 source={require("@/assets/images/tempestade.png")}
               />
               <Text className="text-white">Quinta-feira</Text>
-              <Text className="text-white text-xl font-semibold">
-                {" "}
-                23&#176;
-              </Text>
+              <Text className="text-white text-xl font-semibold">23&#176;</Text>
             </View>
 
             <View
@@ -228,10 +234,7 @@ export default function Index() {
                 source={require("@/assets/images/tempestade.png")}
               />
               <Text className="text-white">Sexta-feira</Text>
-              <Text className="text-white text-xl font-semibold">
-                {" "}
-                23&#176;
-              </Text>
+              <Text className="text-white text-xl font-semibold">23&#176;</Text>
             </View>
 
             <View
@@ -243,10 +246,7 @@ export default function Index() {
                 source={require("@/assets/images/tempestade.png")}
               />
               <Text className="text-white">Sabado</Text>
-              <Text className="text-white text-xl font-semibold">
-                {" "}
-                23&#176;
-              </Text>
+              <Text className="text-white text-xl font-semibold">23&#176;</Text>
             </View>
 
             <View
@@ -258,10 +258,7 @@ export default function Index() {
                 source={require("@/assets/images/tempestade.png")}
               />
               <Text className="text-white">Domingo</Text>
-              <Text className="text-white text-xl font-semibold">
-                {" "}
-                23&#176;
-              </Text>
+              <Text className="text-white text-xl font-semibold">23&#176;</Text>
             </View>
           </ScrollView>
         </View>
